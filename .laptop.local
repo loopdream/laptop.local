@@ -1,0 +1,122 @@
+#!/bin/sh
+
+brew_cask_expand_alias() {
+  brew cask info "$1" 2>/dev/null | head -1 | awk '{gsub(/:/, ""); print $1}'
+}
+
+brew_cask_is_installed() {
+  local NAME=$(brew_cask_expand_alias "$1")
+  brew cask list -1 | grep -Fqx "$NAME"
+}
+
+brew_cask_install() {
+  if ! brew_cask_is_installed "$1"; then
+    brew cask install "$@"
+  fi
+}
+
+brew_cask_install_or_upgrade() {
+  if brew_cask_is_installed "$1"; then
+    echo "$1 is already installed, brew cask upgrade is not yet implemented"
+  else
+    brew cask install "$@"
+  fi
+}
+
+
+# DEV stuff
+fancy_echo 'Installing/Updating Python...'
+brew_install_or_upgrade 'python' # Brew installs PIP with Python
+brew linkapps python
+brew_install_or_upgrade 'python3'
+brew linkapps python3
+fancy_echo 'Installing/Updating VirtualEnv...'
+pip install virtualenv # install Virtualenv for python
+fancy_echo 'Installing/Updating Tree...'
+brew install tree
+fancy_echo 'Installing/Updating Node...'
+brew install node
+fancy_echo 'Installing/Updating MongoDB...'
+brew install mongodb
+fancy_echo 'Installing/Updating Bower...'
+npm install -g bower
+fancy_echo 'Installing/Updating Gulp...'
+npm install -g gulp
+fancy_echo 'Installing/Updating Grunt...'
+npm install -g grunt
+
+
+# Install Brew Cask
+brew_tap 'caskroom/cask'
+brew_install_or_upgrade 'brew-cask'
+
+## APPLICATIONS
+fancy_echo 'Installing/Updating Software...'
+
+# VM
+fancy_echo 'Installing/Updating VirtualBox...'
+brew_cask_install_or_upgrade 'virtualbox'
+fancy_echo 'Installing/Updating Vagrant...'
+brew_cask_install_or_upgrade 'vagrant'
+fancy_echo 'Installing/Updating  Vagrant Manager...'
+brew_cask_install_or_upgrade 'vagrant-manager'
+
+# IDE
+fancy_echo 'Installing/Updating Sublime Text...'
+brew_cask_install_or_upgrade 'sublime-text'
+fancy_echo 'Installing/Updating Atom...'
+brew_cask_install_or_upgrade 'atom'
+fancy_echo 'Installing/Updating Mou...'
+brew_cask_install_or_upgrade 'mou'
+
+# Terminal
+fancy_echo 'Installing/Updating Hyper...'
+brew_cask_install_or_upgrade 'hyper'
+
+# databases
+fancy_echo 'Installing/Updating Sequal Pro...'
+brew_cask_install_or_upgrade 'sequel-pro'
+
+# browsers
+fancy_echo 'Installing/Updating Opera...'
+brew_cask_install_or_upgrade 'opera'
+fancy_echo 'Installing/Updating Firefox...'
+brew_cask_install_or_upgrade 'firefox'
+fancy_echo 'Installing/Updating Chrome...'
+brew_cask_install_or_upgrade 'google-chrome'
+fancy_echo 'Installing/Updating Chrome Canary...'
+brew_cask_install_or_upgrade 'google-chrome-canary'
+fancy_echo 'Installing/Updating Chrome Dev tools...'
+brew_cask_install_or_upgrade 'chrome-devtools'
+
+# chat + VoIP
+fancy_echo 'Installing/Updating Slack...'
+brew_cask_install_or_upgrade 'slack'
+fancy_echo 'Installing/Updating Zoom...'
+brew_cask_install_or_upgrade 'zoomus'
+fancy_echo 'Installing/Updating Skype...'
+brew_cask_install_or_upgrade 'skype'
+
+# ftp
+fancy_echo 'Installing/Updating Filezilla...'
+brew_cask_install_or_upgrade 'filezilla'
+
+# Video
+fancy_echo 'Installing/Updating VLC...'
+brew_cask_install_or_upgrade 'vlc'
+
+# Music
+fancy_echo 'Installing/Updating Spotify...'
+brew_cask_install_or_upgrade 'spotify'
+
+# Offline docs
+fancy_echo 'Installing/Updating Dash...'
+brew_cask_install_or_upgrade 'dash'
+
+# Cloud Services
+fancy_echo 'Installing/Updating Dropbox...'
+brew_cask_install_or_upgrade 'dropbox'
+fancy_echo 'Installing/Updating Heroku toolbelt...'
+brew_cask_install_or_upgrade 'heroku-toolbelt'
+fancy_echo 'Installing/Updating Zeit Now...'
+brew_cask_install_or_upgrade 'now'
