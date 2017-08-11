@@ -72,6 +72,10 @@ brew_cask_install_or_upgrade 'mou'
 # Terminal
 fancy_echo 'Installing/Updating Hyper...'
 brew_cask_install_or_upgrade 'hyper'
+fancy_echo 'Installing/Updating Heroku toolbelt...'
+brew_cask_install_or_upgrade 'heroku-toolbelt'
+fancy_echo 'Installing/Updating Zeit Now...'
+brew_cask_install_or_upgrade 'now'
 
 # databases
 fancy_echo 'Installing/Updating Sequal Pro...'
@@ -113,10 +117,10 @@ brew_cask_install_or_upgrade 'spotify'
 fancy_echo 'Installing/Updating Dash...'
 brew_cask_install_or_upgrade 'dash'
 
-# Cloud Services
+# Cloud Storage & Services
 fancy_echo 'Installing/Updating Dropbox...'
 brew_cask_install_or_upgrade 'dropbox'
-fancy_echo 'Installing/Updating Heroku toolbelt...'
-brew_cask_install_or_upgrade 'heroku-toolbelt'
-fancy_echo 'Installing/Updating Zeit Now...'
-brew_cask_install_or_upgrade 'now'
+fancy_echo 'Installing/Updating Google Drive...'
+brew_cask_install_or_upgrade 'google drive'
+fancy_echo 'Installing/Updating Google Cloud SDK...'
+brew_cask_install_or_upgrade 'google cloud sdk'
