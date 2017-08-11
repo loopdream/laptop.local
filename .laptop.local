@@ -26,9 +26,9 @@ brew_cask_install_or_upgrade() {
 
 # DEV stuff
 fancy_echo 'Installing/Updating Python...'
-brew_install_or_upgrade 'python' # Brew installs PIP with Python
+brew 'python' # Brew installs PIP with Python
 brew linkapps python
-brew_install_or_upgrade 'python3'
+brew 'python3'
 brew linkapps python3
 fancy_echo 'Installing/Updating VirtualEnv...'
 pip install virtualenv # install Virtualenv for python
@@ -48,7 +48,7 @@ npm install -g grunt
 
 # Install Brew Cask
 brew_tap 'caskroom/cask'
-brew_install_or_upgrade 'brew-cask'
+brew 'brew-cask'
 
 ## APPLICATIONS
 fancy_echo 'Installing/Updating Software...'
